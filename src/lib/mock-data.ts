@@ -1,0 +1,71 @@
+import { InspectionSession } from "./types";
+
+export const mockSessions: InspectionSession[] = [
+  {
+    id: "vic-2407",
+    plate: "B 1882 KHR",
+    guestName: "Andrea Wibisono",
+    roomNumber: "1204",
+    status: "parked",
+    valetName: "Rizky P.",
+    parkingZone: "B2 · Slot 14",
+    checkedInAt: "2026-07-10T08:12:00+07:00",
+    fuelLevel: 0.7,
+    odometer: 34120,
+    damageMarks: [],
+  },
+  {
+    id: "vic-2408",
+    plate: "D 990 ALX",
+    guestName: "Michael Tanuwijaya",
+    roomNumber: "0806",
+    status: "requested",
+    valetName: "Dewi S.",
+    parkingZone: "B1 · Slot 03",
+    checkedInAt: "2026-07-10T09:40:00+07:00",
+    fuelLevel: 0.45,
+    odometer: 58210,
+    damageMarks: [],
+  },
+  {
+    id: "vic-2401",
+    plate: "B 71 SEV",
+    guestName: "Grace Hutapea",
+    roomNumber: "1517",
+    status: "incident",
+    valetName: "Rizky P.",
+    parkingZone: "B2 · Slot 21",
+    checkedInAt: "2026-07-09T18:05:00+07:00",
+    fuelLevel: 0.9,
+    odometer: 12030,
+    damageMarks: [
+      {
+        id: "dm-1",
+        point: "rear-door-left",
+        severity: "minor",
+        note: "Baret halus ± 4 cm ditemukan saat check-out, belum ada di foto check-in.",
+      },
+    ],
+  },
+  {
+    id: "vic-2390",
+    plate: "F 22 CTY",
+    guestName: "Bambang Sutrisno",
+    roomNumber: "0912",
+    status: "checked_out",
+    valetName: "Dewi S.",
+    checkedInAt: "2026-07-09T14:00:00+07:00",
+    checkedOutAt: "2026-07-09T21:30:00+07:00",
+    fuelLevel: 0.6,
+    odometer: 88450,
+    damageMarks: [],
+  },
+];
+
+export const statusLabel: Record<InspectionSession["status"], string> = {
+  checked_in: "Baru masuk",
+  parked: "Terparkir",
+  requested: "Diminta tamu",
+  checked_out: "Selesai",
+  incident: "Insiden",
+};

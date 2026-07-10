@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+:root {
+  --background: #e4e6e2;
+  --background-2: #d7dad4;
+  --card: #eef0ec;
+  --line: #c3c7bf;
+  --foreground: #14161b;
+  --foreground-soft: #4b5058;
+
+  --accent: #a8763f;
+  --accent-deep: #7d5a2f;
+  --accent-soft: #c99b62;
+
+  --success: #2f7a5a;
+  --warning: #b06a20;
+  --danger: #b53c3c;
+
+  --panel: #16181d;
+  --panel-2: #1f2229;
+  --panel-line: #33373f;
+  --on-panel: #eceae2;
+  --on-panel-soft: #a3a8ad;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-background-2: var(--background-2);
+  --color-card: var(--card);
+  --color-line: var(--line);
+  --color-foreground: var(--foreground);
+  --color-foreground-soft: var(--foreground-soft);
+
+  --color-accent: var(--accent);
+  --color-accent-deep: var(--accent-deep);
+  --color-accent-soft: var(--accent-soft);
+
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+
+  --color-panel: var(--panel);
+  --color-panel-2: var(--panel-2);
+  --color-panel-line: var(--panel-line);
+  --color-on-panel: var(--on-panel);
+  --color-on-panel-soft: var(--on-panel-soft);
+
+  --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif);
+  --font-mono: var(--font-mono-app);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #1b1d22;
+    --background-2: #22252b;
+    --card: #23262d;
+    --line: #383c44;
+    --foreground: #eceae2;
+    --foreground-soft: #a3a8ad;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
