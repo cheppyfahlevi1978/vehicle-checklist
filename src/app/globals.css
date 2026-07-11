@@ -1,63 +1,65 @@
 @import "tailwindcss";
 
 :root {
-  --background: #e4e6e2;
-  --background-2: #d7dad4;
-  --card: #eef0ec;
-  --line: #c3c7bf;
-  --foreground: #14161b;
-  --foreground-soft: #4b5058;
+  /* Hotel Fleet Check — Navy Blue primary, Gold accent */
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+  --border: #e2e8f0;
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
 
-  --accent: #a8763f;
-  --accent-deep: #7d5a2f;
-  --accent-soft: #c99b62;
+  --primary: #0f172a;
+  --primary-foreground: #ffffff;
 
-  --success: #2f7a5a;
-  --warning: #b06a20;
-  --danger: #b53c3c;
+  --accent: #d4af37;
+  --accent-foreground: #0f172a;
 
-  --panel: #16181d;
-  --panel-2: #1f2229;
-  --panel-line: #33373f;
-  --on-panel: #eceae2;
-  --on-panel-soft: #a3a8ad;
+  --success: #16a34a;
+  --success-foreground: #ffffff;
+  --danger: #dc2626;
+  --danger-foreground: #ffffff;
+  --warning: #d97706;
+  --warning-foreground: #ffffff;
+
+  --radius: 0.75rem;
 }
 
 @theme inline {
   --color-background: var(--background);
-  --color-background-2: var(--background-2);
-  --color-card: var(--card);
-  --color-line: var(--line);
   --color-foreground: var(--foreground);
-  --color-foreground-soft: var(--foreground-soft);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
 
   --color-accent: var(--accent);
-  --color-accent-deep: var(--accent-deep);
-  --color-accent-soft: var(--accent-soft);
+  --color-accent-foreground: var(--accent-foreground);
 
   --color-success: var(--success);
-  --color-warning: var(--warning);
+  --color-success-foreground: var(--success-foreground);
   --color-danger: var(--danger);
-
-  --color-panel: var(--panel);
-  --color-panel-2: var(--panel-2);
-  --color-panel-line: var(--panel-line);
-  --color-on-panel: var(--on-panel);
-  --color-on-panel-soft: var(--on-panel-soft);
+  --color-danger-foreground: var(--danger-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
 
   --font-sans: var(--font-sans);
-  --font-serif: var(--font-serif);
-  --font-mono: var(--font-mono-app);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #1b1d22;
-    --background-2: #22252b;
-    --card: #23262d;
-    --line: #383c44;
-    --foreground: #eceae2;
-    --foreground-soft: #a3a8ad;
+    --background: #0b1120;
+    --foreground: #f1f5f9;
+    --card: #0f172a;
+    --card-foreground: #f1f5f9;
+    --border: #1e293b;
+    --muted: #1e293b;
+    --muted-foreground: #94a3b8;
   }
 }
 
@@ -65,4 +67,30 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+}
+
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
+.animate-accordion-down {
+  animation: accordion-down 0.2s ease-out;
+}
+
+.animate-accordion-up {
+  animation: accordion-up 0.2s ease-out;
 }

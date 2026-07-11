@@ -1,7 +1,7 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
-const STAFF_PATH_PREFIXES = ["/valet", "/admin"];
+const STAFF_PATH_PREFIXES = ["/dashboard", "/checklist"];
 
 export async function proxy(request: NextRequest) {
   let response = NextResponse.next({ request });
@@ -45,5 +45,5 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/valet/:path*", "/admin/:path*"],
+  matcher: ["/dashboard/:path*", "/checklist/:path*"],
 };
