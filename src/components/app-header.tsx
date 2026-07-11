@@ -1,6 +1,13 @@
 import Link from "next/link";
+import { SignOutButton } from "./sign-out-button";
 
-export function AppHeader({ role }: { role: string }) {
+export function AppHeader({
+  role,
+  email,
+}: {
+  role: string;
+  email?: string;
+}) {
   return (
     <header className="border-b border-line bg-card">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
@@ -12,13 +19,9 @@ export function AppHeader({ role }: { role: string }) {
         <div className="flex items-center gap-3">
           <span className="font-mono text-[11px] uppercase tracking-wider text-foreground-soft">
             {role}
+            {email ? ` · ${email}` : ""}
           </span>
-          <Link
-            href="/"
-            className="text-xs text-foreground-soft underline decoration-line underline-offset-4 hover:text-accent"
-          >
-            Ganti peran
-          </Link>
+          {email && <SignOutButton />}
         </div>
       </div>
     </header>

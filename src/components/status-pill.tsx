@@ -1,5 +1,5 @@
 import { SessionStatus } from "@/lib/types";
-import { statusLabel } from "@/lib/mock-data";
+import { statusLabel } from "@/lib/status";
 
 const styles: Record<SessionStatus, string> = {
   checked_in: "bg-accent/15 text-accent-deep border-accent/30",

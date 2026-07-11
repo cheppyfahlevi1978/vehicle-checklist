@@ -7,37 +7,42 @@ export type SessionStatus =
 
 export type DamageSeverity = "minor" | "moderate" | "major";
 
-export interface DamageMark {
-  id: string;
-  point: string; // e.g. "front-bumper", "rear-door-left"
-  severity: DamageSeverity;
-  note?: string;
-  photoUrl?: string;
-}
-
-export interface ChecklistCategory {
-  id: string;
-  label: string;
-  items: ChecklistItem[];
-}
-
-export interface ChecklistItem {
-  id: string;
-  label: string;
-  checked: boolean;
-}
+export type InspectionStage = "checkin" | "checkout";
 
 export interface InspectionSession {
   id: string;
   plate: string;
-  guestName: string;
-  roomNumber: string;
+  guest_name: string;
+  room_number: string;
   status: SessionStatus;
-  valetName: string;
-  parkingZone?: string;
-  checkedInAt: string;
-  checkedOutAt?: string;
-  fuelLevel?: number; // 0-1
-  odometer?: number;
-  damageMarks: DamageMark[];
+  valet_name: string;
+  parking_zone: string | null;
+  fuel_level: number | null; // 0-1
+  odometer: number | null;
+  checkin_signed_at: string | null;
+  checkout_signed_at: string | null;
+  checked_in_at: string;
+  checked_out_at: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface VehiclePhoto {
+  id: string;
+  session_id: string;
+  stage: InspectionStage;
+  label: string;
+  storage_path: string;
+  created_at: string;
+}
+
+export interface DamageMark {
+  id: string;
+  session_id: string;
+  point: string;
+  severity: DamageSeverity;
+  note: string | null;
+  photo_path: string | null;
+  found_at_stage: InspectionStage;
+  created_at: string;
 }
