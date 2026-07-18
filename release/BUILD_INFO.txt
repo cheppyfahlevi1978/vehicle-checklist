@@ -1,0 +1,4 @@
+SIYADI Dejiaohui Indonesia v1.0.0 Pilot
+Built: 2026-07-18 19:12:51 UTC
+Source ZIP: SIYADI-Dejiaohui-v1-source.zip
+APK: Yayasan-Dejiaohui-v1-debug.apk
