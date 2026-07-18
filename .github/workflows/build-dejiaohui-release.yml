@@ -1,0 +1,52 @@
+name: Build Dejiaohui Pilot Release
+
+on:
+  push:
+    branches:
+      - dejiaohui-pilot-v1-redelivery
+    paths:
+      - 'src/build-dejiaohui-release.sh'
+      - '.github/workflows/build-dejiaohui-release.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: dejiaohui-pilot-v1-redelivery
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: pdo_sqlite, sqlite3, mbstring, xml, ctype, json, fileinfo, openssl
+          tools: composer:v2
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.7'
+
+      - name: Build source ZIP and APK
+        run: bash src/build-dejiaohui-release.sh
+
+      - name: Commit release files
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -f release/
+          git commit -m 'Build SIYADI Dejiaohui v1 release [skip ci]' || exit 0
+          git push origin HEAD:dejiaohui-pilot-v1-redelivery
