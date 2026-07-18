@@ -35,14 +35,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Create source ZIP
-        run: zip -r SIYADI-Dejiaohui-v1-source.zip server android README.md VERSION -x '*/build/*' '*.sqlite'
-
-      - name: Upload source ZIP
+      - name: Upload source package
         uses: actions/upload-artifact@v4
         with:
           name: SIYADI-Dejiaohui-v1-source
-          path: SIYADI-Dejiaohui-v1-source.zip
+          path: |
+            server
+            android
+            README.md
+            VERSION
           if-no-files-found: error
 
   build-apk:
