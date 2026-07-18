@@ -1,0 +1,2 @@
+ebbe87e5ab8dc9fb876abefc1a84b49f753cebae8c95e2b5c58d012dab8b39b9  /home/runner/work/vehicle-checklist/vehicle-checklist/release/SIYADI-Dejiaohui-v1-source.zip
+755a25021bc393d48e9607eace93173f610bb7cbfb0e2403da7e97b0045740ff  /home/runner/work/vehicle-checklist/vehicle-checklist/release/Yayasan-Dejiaohui-v1-debug.apk
