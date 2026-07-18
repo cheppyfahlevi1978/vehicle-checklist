@@ -1,28 +1,93 @@
-# Vehicle Inspection Car
+# SIYADI — Yayasan Dejiaohui Indonesia
 
-Sistem inspeksi kendaraan digital untuk hotel bintang 4 & 5 — mengganti
-formulir kertas di pos valet dengan pemeriksaan terverifikasi, berfoto, dan
-bisa dilacak, dari mobil tamu masuk gerbang sampai kunci diserahkan kembali.
+Versi pilot ini mengikuti pola operasional aplikasi RESTO:
 
-## Stack
-
-- Next.js (App Router) + TypeScript
-- Tailwind CSS v4
-- Data saat ini masih mock (`src/lib/mock-data.ts`) — integrasi Supabase
-  (auth, database, storage foto) menyusul di fase berikutnya.
-
-## Struktur peran
-
-- `/` — pemilihan peran
-- `/valet` — daftar sesi aktif, check-in, check-out kendaraan
-- `/admin` — dashboard duty manager: statistik, insiden, riwayat kendaraan
-- `/guest/[sessionId]` — portal tamu untuk melihat laporan kondisi mobil
-
-## Menjalankan secara lokal
-
-```bash
-npm install
-npm run dev
+```text
+Aplikasi web di hosting + database terpusat/terpisah + APK Android sebagai klien
 ```
 
-Buka [http://localhost:3000](http://localhost:3000).
+## Arsitektur
+
+- Satu source aplikasi pada hosting.
+- Satu database pusat untuk daftar cabang dan akun nasional.
+- Setiap cabang memakai file database SQLite tersendiri pada versi pilot.
+- Satu APK Android membuka aplikasi melalui HTTPS.
+- Data cabang tidak bercampur.
+- Portal nasional dapat menambahkan cabang baru dan otomatis membuat database cabangnya.
+
+## Modul pilot
+
+Dashboard, anggota, donatur, donasi, penerima manfaat, program sosial, penyaluran bantuan, keuangan, relawan, pendidikan moral, kegiatan budaya, inventaris, dokumen, laporan cabang, portal nasional, dan manajemen cabang.
+
+## Persyaratan hosting
+
+- PHP 8.1 atau lebih baru.
+- Ekstensi PDO SQLite dan SQLite3.
+- HTTPS aktif.
+- Document Root diarahkan ke folder `server/public`.
+
+## Instalasi di Domainesia
+
+1. Ekstrak ZIP ke:
+
+```text
+/home/iasumyid/yayasan.ias4u.my.id
+```
+
+2. Atur Document Root subdomain menjadi:
+
+```text
+/home/iasumyid/yayasan.ias4u.my.id/server/public
+```
+
+3. Buat folder dan permission dari Terminal cPanel:
+
+```bash
+cd /home/iasumyid/yayasan.ias4u.my.id
+mkdir -p server/database/branches server/storage
+chmod -R 775 server/database server/storage
+```
+
+4. Buka:
+
+```text
+https://yayasan.ias4u.my.id/install
+```
+
+5. Tekan **Pasang Data Pilot**.
+
+## Akun pilot
+
+### Cabang Surabaya
+
+```text
+Email    : admin.sby@dejiaohui.id
+Password : Cabang123!
+```
+
+### Portal nasional
+
+```text
+URL      : https://yayasan.ias4u.my.id/national/login
+Email    : admin@dejiaohui.id
+Password : Admin123!
+```
+
+Ganti password sebelum pemakaian nyata.
+
+## APK Android
+
+Source Android tersedia di folder `android`. Alamat server sudah diarahkan ke:
+
+```text
+https://yayasan.ias4u.my.id
+```
+
+GitHub Actions pada branch ini membangun APK debug secara otomatis. APK hasil build tersedia pada menu **Actions → Build Dejiaohui APK → Artifacts**.
+
+## Catatan pilot
+
+- SQLite dipakai agar cabang pertama dapat diuji tanpa membuat banyak database MySQL.
+- Pada produksi nasional, database cabang dapat dimigrasikan ke MySQL/MariaDB terpisah.
+- Unggah berkas, kuitansi PDF, approval berlapis, sinkronisasi rekap nasional otomatis, dan notifikasi belum dimasukkan ke pilot ini.
+- Password SMTP tidak disimpan di source code.

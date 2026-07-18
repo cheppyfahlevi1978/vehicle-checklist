@@ -1,0 +1,54 @@
+name: Build Dejiaohui APK
+
+on:
+  push:
+    branches:
+      - dejiaohui-resto-v1
+  workflow_dispatch:
+
+jobs:
+  test-server:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: pdo_sqlite, sqlite3
+
+      - name: PHP syntax check
+        run: find server -name '*.php' -print0 | xargs -0 -n1 php -l
+
+      - name: Install pilot database
+        run: php -r "require 'server/app/bootstrap.php'; install_pilot(); echo 'Pilot database OK'.PHP_EOL;"
+
+  build-apk:
+    runs-on: ubuntu-latest
+    needs: test-server
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+
+      - name: Build debug APK
+        run: gradle -p android :app:assembleDebug
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Yayasan-Dejiaohui-v1-debug-apk
+          path: android/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
