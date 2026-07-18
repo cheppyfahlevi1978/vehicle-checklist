@@ -1,0 +1,9 @@
+{
+  "name": "SIYADI - Yayasan Dejiaohui Indonesia",
+  "short_name": "SIYADI",
+  "start_url": "/login",
+  "display": "standalone",
+  "background_color": "#fffaf0",
+  "theme_color": "#741f2f",
+  "description": "Sistem Informasi Yayasan Dejiaohui Indonesia"
+}
