@@ -1,0 +1,9 @@
+{
+  "info": {"name":"IAS Marketplace Pilot","schema":"https://schema.getpostman.com/json/collection/v2.1.0/collection.json"},
+  "variable": [{"key":"base_url","value":"https://market.ias4u.my.id/api/mobile/v1"},{"key":"token","value":""}],
+  "item": [
+    {"name":"Login Buyer","request":{"method":"POST","header":[{"key":"Accept","value":"application/json"},{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"login\": \"buyer@ias4u.my.id\",\n  \"password\": \"Buyer123!\",\n  \"expected_role\": \"buyer\",\n  \"device_name\": \"Postman\"\n}"},"url":{"raw":"{{base_url}}/login","host":["{{base_url}}"],"path":["login"]}}},
+    {"name":"Catalog Products","request":{"method":"GET","url":{"raw":"{{base_url}}/catalog/products","host":["{{base_url}}"],"path":["catalog","products"]}}},
+    {"name":"Buyer Orders","request":{"method":"GET","header":[{"key":"Authorization","value":"Bearer {{token}}"},{"key":"Accept","value":"application/json"}],"url":{"raw":"{{base_url}}/buyer/orders","host":["{{base_url}}"],"path":["buyer","orders"]}}}
+  ]
+}

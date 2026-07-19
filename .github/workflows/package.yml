@@ -1,0 +1,18 @@
+name: Package IAS Marketplace source
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ias-marketplace-suite-v1]
+
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: zip -qr IAS-Marketplace-Suite-v1-source.zip . -x '.git/*'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: IAS-Marketplace-Suite-v1-source
+          path: IAS-Marketplace-Suite-v1-source.zip
+          retention-days: 30
