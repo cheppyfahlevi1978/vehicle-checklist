@@ -14,8 +14,7 @@ composer require guzzlehttp/guzzle
 cp -R "$ROOT/backend-overlay/." .
 cp .env.example .env
 php artisan key:generate
-php artisan migrate --seed
 php artisan optimize:clear
 
 echo "Backend eArsip dibuat di: $TARGET"
-echo "Sesuaikan APP_URL, database, ADMIN_EMAIL, dan ADMIN_PASSWORD di .env"
+echo "Selanjutnya isi database pada .env, lalu jalankan: php artisan migrate --seed"
