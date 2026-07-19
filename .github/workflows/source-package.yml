@@ -1,0 +1,24 @@
+name: Build eArsip source packages
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [e-arsip-suite-v1]
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Make scripts executable
+        run: chmod +x scripts/*.sh
+      - name: Build Laravel source
+        run: ./scripts/build-backend.sh e-arsip-backend
+      - name: Zip backend
+        run: zip -qr eArsip-backend.zip e-arsip-backend -x 'e-arsip-backend/vendor/*'
+      - name: Upload backend artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: eArsip-backend-source
+          path: eArsip-backend.zip
+          retention-days: 30
